@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--
+    1、如果不去除hash#,那么a连接   <a href="#/home">home</a>加井号,用<router-linck to='目标连接'>的话,就不用手动加#
+    2、去掉哈希，mode:'history' <a href="/home">home</a>问题是,每次点击时,相对与当前页面跳转,不是单页,是多页了
+        解决的话,就是手动把a的跳转取消掉,麻烦,因此用<router-linck to='目标连接'>
+    3、动态绑定： :to='路由'，动态绑定数据，在data里写，：to里可以是对象。
+    4、<router-linck>默认是a链接，要行用别的标签就用tag。
+    5、点击router-link的时候，vue会自动监听是哪个，会预留一个class名字，router-link-active，设置这个classname,有两种方法，
+        a、全局设置：在路由里配置时，设置，有给K值：routerLinkActive：‘自己取的名字’。这个就会取代router-link-active
+        b、router-link里面设置<router-link active-class='自己取的名字'></router-link>
+    6、多个组件共用一套样式时，可以在<router-view class='共同的样式名'></router-view>，如果单个组件再设置，那么，
+        会和outer-view的拼在一起center
+    7、添加事件，比如移入，在router-link里写event=‘mouseover’
+    8、路由里的通配符*
+        {
+      path: '*',
+      //1、component: 组件名字
+      //2、重定向
+      redirect:'/home'
+      //3、对象
+      redirect:{
+        path：‘home’
+      }
+      //4、name
+      redirect:{
+        name：‘home’
+      }
+    }
+    //5、动态设置重定向的目标
+    redirect：（to）=>{
+    if(to.path ==='23'){
+        return '/home'
+    }else{
+        return {name:'about'}
+        }
+    }
+    to是一个目标路由的对象，是访问的路径的路由信息,ruturn可以是对象，也可以是单个，但必须要return
+    9、两个不同的路由，渲染同一个页面，可以起别名
+           {
+      path: '/home',
+      name: 'home',
+      component: home
+      alisas：‘/index’
+    }
+    /home和/index渲染的都是home组件。
+
+    10、根路径
+    {
+      path: '/',
+      component: home,
+    }
+    11、精确匹配
+    exact，true或false，只写exact，就代表true
+    12、元素嵌套a，不用谢href
+         <router-link to="/about/study" tag="li">
+                <a >study</a>
+        </router-link>
+    13、router-view写哪渲染哪
+    14、在子路由里设置一个默认的，那个默认，哪个path为空。
+    {
+      path: '/about',
+      //name: 'about',设置默认子路由，父路由就不要name了，name可以给默认的子路由
+      component: about,
+      children:[
+        {
+          path:'',
+          name: 'about'
+          component: study
+        },
+        {
+          path:'work',//没有/
+          component: work
+        },
+        {
+          path:'hobby',
+          component: hobby
+        }
+      ]
+    }
+    15、命名试图
+        <router-link :to="{name:'study'}" tag="li" exact>
+        :to="{name:'study'}"子路由的名字
+    16、url里不嵌套，试图中，组件与嵌套
+        是在子路径里，写上/。
+        children:[
+        {
+          path:'/study',
+          component: study
+        }
+        ]
+    17、同级展示多个视图，不是嵌套怎么办
+
+
+
+
+
+
+
+
+
+
+
+
+
+-->
+</body>
+</html>
